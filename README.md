@@ -86,9 +86,20 @@ main.cpp:1:10: fatal error: 'iostream' file not found
 1 error generated.
 ```
 
-From http://stackoverflow.com/a/31488490:
+Solution (from http://stackoverflow.com/a/31488490):
 
- * `sudo apt-get install -y clang-3.6 lldb-3.6 libc++-dev libc++abi-dev`
+In the `travis.yml`, add:
+
+```
+sudo apt-get install -y libc++-dev libc++abi-dev
+```
+
+A suitable spot is the `install:` section. If that section is absent, add:
+
+```
+install:
+  - sudo apt-get install -y libc++-dev libc++abi-dev
+```
 
 
 ### `cannot find -lc++`
@@ -107,11 +118,17 @@ clang: error: linker command failed with exit code 1 (use -v to see invocation)
 The command "clang++ -o main -std=c++14 -stdlib=libc++ main.cpp" exited with 1.
 ```
 
-These are some redirections in `.travis.yml`:
+Solution:
+
+In the `travis.yml`, add:
 
 ```
-  - sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.8 90
-  - sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.8 90
+sudo apt-get install -y libc++-dev libc++abi-dev
 ```
 
-It appears that also the linker must be redirected?
+A suitable spot is the `install:` section. If that section is absent, add:
+
+```
+install:
+  - sudo apt-get install -y libc++-dev libc++abi-dev
+```
