@@ -14,6 +14,7 @@ install:
   # clang
   - sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.8 90
   - sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.8 90
+  - sudo apt-get install -y libc++-dev libc++abi-dev
 
 script:
   - clang++-3.8 -v

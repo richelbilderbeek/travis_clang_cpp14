@@ -59,12 +59,59 @@ In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/4.8/../../../../inclu
 1 error generated.
 ```
 
+The STL from GCC-4.8 is released somewhere from March 2013 (4.8.0) and June 2015 (4.8.5). There is a cha
+
 Solutions:
 
  * Use `libc++` as STL, by using `clang++ -std=c++14 -stdlib=libc++ my_main.cpp`
 
-
 Background:
 
- * https://bugs.launchpad.net/ubuntu/+source/llvm-toolchain-3.6/+bug/1620181/comments/2
- * http://stackoverflow.com/questions/17775390/clang-3-3-in-c1y-mode-cannot-parse-cstdio-header
+ * Similar compiler error: http://stackoverflow.com/questions/17775390/clang-3-3-in-c1y-mode-cannot-parse-cstdio-header
+ * Bugfix of this compiler error: https://bugs.launchpad.net/ubuntu/+source/llvm-toolchain-3.6/+bug/1620181/comments/2
+ * Using `libc++`: http://libcxx.llvm.org/docs/UsingLibcxx.html
+
+### `'iostream' file not found`
+
+Caused by:
+
+```
+clang++-3.8 -o main -std=c++14 -stdlib=libc++ main.cpp
+```
+
+```
+main.cpp:1:10: fatal error: 'iostream' file not found
+#include <iostream>
+         ^
+1 error generated.
+```
+
+From http://stackoverflow.com/a/31488490:
+
+ * `sudo apt-get install -y clang-3.6 lldb-3.6 libc++-dev libc++abi-dev`
+
+
+### `cannot find -lc++`
+
+Caused by:
+
+```
+clang++ -o main -std=c++14 -stdlib=libc++ main.cpp
+```
+
+Error message:
+
+```
+/usr/bin/ld: cannot find -lc++
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+The command "clang++ -o main -std=c++14 -stdlib=libc++ main.cpp" exited with 1.
+```
+
+These are some redirections in `.travis.yml`:
+
+```
+  - sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.8 90
+  - sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.8 90
+```
+
+It appears that also the linker must be redirected?
