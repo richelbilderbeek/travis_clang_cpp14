@@ -19,4 +19,4 @@ matrix:
             - clang-3.8
           sources: *sources
 script:
-  - $(CXX) -o main $(CXXFLAGS) main.cpp
+  - clang++ -o main -std=c++14 main.cpp
