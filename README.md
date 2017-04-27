@@ -59,6 +59,11 @@ In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/4.8/../../../../inclu
 1 error generated.
 ```
 
+Solutions:
+
+ * Use `libc++` as STL, by using `clang++ -std=c++14 -stdlib=libc++ my_main.cpp`
+
+
 Background:
 
  * https://bugs.launchpad.net/ubuntu/+source/llvm-toolchain-3.6/+bug/1620181/comments/2

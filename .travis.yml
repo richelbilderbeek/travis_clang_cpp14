@@ -17,6 +17,6 @@ install:
 
 script:
   - clang++-3.8 -v
-  - clang++-3.8 -o main -std=c++14 main.cpp
+  - clang++-3.8 -o main -std=c++14 -stdlib=libc++ main.cpp
   - clang++ -v
-  - clang++ -o main -std=c++14 main.cpp
+  - clang++ -o main -std=c++14 -stdlib=libc++ main.cpp
