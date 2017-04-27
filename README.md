@@ -29,3 +29,36 @@ Less complex builds:
 
  * Use of C++98: [travis_clang_cpp98](https://www.github.com/richelbilderbeek/travis_clang_cpp98)
  * Use of C++11: [travis_clang_cpp11](https://www.github.com/richelbilderbeek/travis_clang_cpp11)
+
+## Troubleshooting
+
+### `no member named 'gets' in the global namespace`
+
+Caused by:
+
+```
+clang++-3.8 -o main -std=c++14 main.cpp
+```
+
+The error message is rather clear:
+
+```
+In file included from main.cpp:1:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/4.8/../../../../include/c++/4.8/iostream:39:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/4.8/../../../../include/c++/4.8/ostream:38:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/4.8/../../../../include/c++/4.8/ios:42:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/4.8/../../../../include/c++/4.8/bits/ios_base.h:41:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/4.8/../../../../include/c++/4.8/bits/locale_classes.h:40:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/4.8/../../../../include/c++/4.8/string:52:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/4.8/../../../../include/c++/4.8/bits/basic_string.h:2815:
+In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/4.8/../../../../include/c++/4.8/ext/string_conversions.h:43:
+/usr/bin/../lib/gcc/x86_64-linux-gnu/4.8/../../../../include/c++/4.8/cstdio:120:11: error: 
+      no member named 'gets' in the global namespace
+  using ::gets;
+        ~~^
+1 error generated.
+```
+
+Solution:
+
+ * ?use `compiler: clang`
