@@ -7,6 +7,10 @@ addons:
       - clang-3.8
     sources: *sources
 
+install: 
+  # clang
+  - sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.8 90
+
 script:
   - clang++-3.8 -v
   - clang++-3.8 -o main -std=c++14 main.cpp
