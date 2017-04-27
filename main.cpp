@@ -1,7 +1,3 @@
-#if !_ISOC11_SOURCE
-using ::gets;
-#endif
-
 #include <iostream>
 
 void f() noexcept {
