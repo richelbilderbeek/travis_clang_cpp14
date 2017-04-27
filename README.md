@@ -59,6 +59,7 @@ In file included from /usr/bin/../lib/gcc/x86_64-linux-gnu/4.8/../../../../inclu
 1 error generated.
 ```
 
-Solution:
+Background:
 
- * ?use `compiler: clang`
+ * https://bugs.launchpad.net/ubuntu/+source/llvm-toolchain-3.6/+bug/1620181/comments/2
+ * http://stackoverflow.com/questions/17775390/clang-3-3-in-c1y-mode-cannot-parse-cstdio-header

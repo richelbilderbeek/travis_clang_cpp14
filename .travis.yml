@@ -10,7 +10,7 @@ addons:
       - clang-3.8
     sources: *sources
 
-#install: 
+install: 
   # clang
   - sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.8 90
   - sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.8 90
